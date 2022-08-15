@@ -23,7 +23,9 @@ export default class Application {
     }
 
     start(port: number) {
-        this.app.listen(port);
+        this.app.listen(port, () => {
+            console.log(`API running on port: ${port}`);
+        });
     }
 
     config() {
