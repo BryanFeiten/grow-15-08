@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import {BeforeInsert, Entity, PrimaryColumn} from "typeorm";
+import { BeforeInsert, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class EntityBase {

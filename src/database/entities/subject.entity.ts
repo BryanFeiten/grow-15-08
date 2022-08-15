@@ -1,6 +1,5 @@
 import { Column, Entity, OneToMany } from "typeorm";
-import { EntityBase } from "./base.entity";
-import { TestEntity } from "./test.entity";
+import { EntityBase, TestEntity } from ".";
 
 @Entity()
 export class SubjectEntity extends EntityBase {

@@ -7,7 +7,7 @@ import {
 import bcrypt from 'bcrypt';
 
 @Entity({ name: 'user' })
-export default class UserEntity extends BaseEntity {
+export class UserEntity extends BaseEntity {
     @PrimaryColumn()
     id?: number;
 

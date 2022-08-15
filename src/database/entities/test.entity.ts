@@ -1,6 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { EntityBase } from "./base.entity";
-import { SubjectEntity } from "./subject.entity";
+import { EntityBase, SubjectEntity } from ".";
 
 @Entity()
 export class TestEntity extends EntityBase {
