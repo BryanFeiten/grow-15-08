@@ -4,8 +4,13 @@ import { EntityBase, TestEntity } from ".";
 @Entity()
 export class SubjectEntity extends EntityBase {
   @Column()
-  name!: string;
+  name: string;
 
   @OneToMany(() => TestEntity, (entity) => entity.subject)
   tests?: TestEntity[];
+
+  constructor(name: string) {
+    super();
+    this.name = name;
+  }
 }
