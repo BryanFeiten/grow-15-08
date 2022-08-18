@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserService from '../services/user';
+import { UserService } from '../services';
 
 export default class UserController {
     index = async (request: Request, response: Response) => {
@@ -35,7 +35,7 @@ export default class UserController {
         const { id } = request.params;
         const service = new UserService();
         await service.delete(Number(id));
-        
+
         return response.sendStatus(204);
     }
 }

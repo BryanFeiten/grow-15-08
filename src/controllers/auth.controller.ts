@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import jwt, { SignOptions, Secret } from 'jsonwebtoken';
-import UserService from '../services/user';
+import { UserService } from '../services';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -11,7 +11,7 @@ export default class AuthController {
         const service = new UserService();
         const user = await service.findByEmail(email);
         console.log('User', user, email, password);
-        
+
 
         if (!user || !user.comparePassword(password)) {
             return response.status(400).json({
@@ -25,16 +25,16 @@ export default class AuthController {
         }
 
         const token = jwt.sign(
-            { 
+            {
                 id: user.id,
-                email: user.email 
-            }, 
+                email: user.email
+            },
             secret,
             options
         );
 
         return response.json({
-            user: { 
+            user: {
                 id: user.id,
                 name: user.name,
                 email: user.email

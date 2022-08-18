@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import AuthController from '../controllers/auth';
+import AuthController from '../controllers/auth.controller';
 
-export default class AuthRouter {
+export class AuthRouter {
     init() {
         const routes = Router();
         const controller = new AuthController();
