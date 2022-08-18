@@ -1,8 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { randomUUID } from "crypto";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { EntityBase, SubjectEntity } from ".";
 
-@Entity()
-export class TestEntity extends EntityBase {
+@Entity({ name: 'tests'})
+export class TestEntity extends BaseEntity {
+  @PrimaryColumn()
+  uid: string;
+
   @Column({ name: 'subject_uid' })
   subjectUid: string;
 
@@ -15,6 +19,7 @@ export class TestEntity extends EntityBase {
 
   constructor(subjectUid: string, grade: number) {
     super();
+    this.uid = randomUUID();
     this.subjectUid = subjectUid;
     this.grade = grade;
   }
