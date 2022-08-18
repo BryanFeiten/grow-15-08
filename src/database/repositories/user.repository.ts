@@ -1,6 +1,6 @@
-import UserEntity from '../entities/user.entity';
+import { UserEntity } from '../entities';
 
-export default class UserRepository {
+export class UserRepository {
     async find() {
         const users = await UserEntity.find();
 
@@ -25,8 +25,8 @@ export default class UserRepository {
 
     async create(name: string, email: string, password: string) {
         const user = new UserEntity(
-            name, 
-            email, 
+            name,
+            email,
             await UserEntity.createEncryptedPassword(password)
         );
 
@@ -43,7 +43,7 @@ export default class UserRepository {
             user.email = email;
 
             if (password) {
-                user.password =  await UserEntity.createEncryptedPassword(password);
+                user.password = await UserEntity.createEncryptedPassword(password);
             }
 
             await user.save();
