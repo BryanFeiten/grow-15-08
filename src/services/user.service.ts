@@ -1,25 +1,25 @@
-import UserRepository from '../database/repositories/user';
+import { UserRepository } from '../database/repositories';
 
-export default class UserService {
+export class UserService {
     async find() {
         const repository = new UserRepository();
         const user = await repository.find();
 
-        return user;    
+        return user;
     }
 
     async findOne(userId: number) {
-        const repository =  new UserRepository();
+        const repository = new UserRepository();
         const user = await repository.findOne(userId);
 
-        return user;    
+        return user;
     }
 
     async findByEmail(email: string) {
-        const repository =  new UserRepository();
+        const repository = new UserRepository();
         const user = await repository.findByEmail(email);
 
-        return user;    
+        return user;
     }
 
     async create(name: string, email: string, password: string) {
@@ -27,7 +27,7 @@ export default class UserService {
         const repository = new UserRepository();
         const user = await repository.create(name, email, password);
 
-        return user;    
+        return user;
     }
 
     async update(userId: number, name: string, email: string, password: string) {
@@ -35,7 +35,7 @@ export default class UserService {
         const repository = new UserRepository();
         const user = await repository.update(userId, name, email, password);
 
-        return user;    
+        return user;
     }
 
     async delete(userId: number) {
