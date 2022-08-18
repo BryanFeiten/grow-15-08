@@ -2,7 +2,7 @@ import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../swagger-documentation.json';
 
-export default class DocsRouter {
+export class DocsRouter {
     init() {
         const routes = Router();
 
