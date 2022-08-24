@@ -1,7 +1,14 @@
 export interface HttpResponse {
   success: boolean,
-  body: any,
   code: number,
+  body?: any,
+  error?: AppError,
+}
+
+interface AppError {
+  process: string,
+  message: string,
+  error: any,
 }
 
 export const Response = {
@@ -12,34 +19,37 @@ export const Response = {
       code: 200,
     }
   },
-  failure: (code: number, process: string, error: any): HttpResponse => {
+  failure: (code: number, process: string, message: string, error: any): HttpResponse => {
     return {
       success: false,
-      body: {
+      code,
+      error: {
         process,
+        message,
         error,
       },
-      code
     }
   },
-  notFound: (process: string, error: any): HttpResponse => {
+  notFound: (process: string, message: string, error: any): HttpResponse => {
     return {
       success: false,
-      body: {
+      code: 404,
+      error: {
         process,
+        message,
         error,
       },
-      code: 404
     }
   },
   serverFailure: (process: string, error: any): HttpResponse => {
     return {
       success: false,
+      code: 500,
       body: {
         process,
+        message: 'Aconteceu um erro desconhecido, por favor entre em contato, ou aguarde',
         error,
       },
-      code: 404
     }
   },
 }
