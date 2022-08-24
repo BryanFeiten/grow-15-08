@@ -1,5 +1,4 @@
-import { HttpRequest } from "../contracts/helpers/http.request";
-import { HttpResponse, ResponseSuccess } from "../contracts/helpers/http.response";
+import { HttpRequest, HttpResponse, Response } from "../contracts";
 import { SubjectServiceImp } from "../services";
 
 export interface SubjectController {
@@ -15,7 +14,7 @@ export class SubjectControllerImp implements SubjectController {
 
     const subjects = await service.getAllSubjects();
 
-    return ResponseSuccess(subjects);
+    return Response.success(subjects);
   }
 
   async getSubjectByUid(request: HttpRequest): Promise<HttpResponse> {
@@ -26,7 +25,7 @@ export class SubjectControllerImp implements SubjectController {
 
     const subject = await service.getSubjectByUid(uid);
 
-    return ResponseSuccess(subject);
+    return Response.success(subject);
   }
 
   async createSubject(request: HttpRequest): Promise<HttpResponse> {
@@ -35,7 +34,7 @@ export class SubjectControllerImp implements SubjectController {
 
     const subject = await service.createSubject({ name });
 
-    return ResponseSuccess(subject);
+    return Response.success(subject);
   }
 
   async deleteSubject(request: HttpRequest): Promise<HttpResponse> {
@@ -44,6 +43,6 @@ export class SubjectControllerImp implements SubjectController {
 
     const result = await service.deleteSubject(uid);
 
-    return ResponseSuccess(result);
+    return Response.success(result);
   }
 }
