@@ -9,4 +9,6 @@ dotenv.config();
 
 application.init().then(() => {
     application.start(port);
-});
+}).catch(console.error);
+
+export default application;
