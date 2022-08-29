@@ -1,12 +1,12 @@
 import express from 'express';
 import cors from 'cors';
-import Postgres from './database/connections/Postgres';
+import Postgres from './main/database/connections/Postgres';
 import {
     UserRouter,
     AuthRouter,
     DocsRouter,
     SubjectRoute
-} from './routers';
+} from './main/routers';
 
 export default class Application {
     private readonly app: express.Application;

@@ -1,0 +1,6 @@
+- Criar docs pra notas (swagger)
+- Criar testes (jest)
+    - Configuração
+    - Criação dos testes
+- Subir pro Github
+- Subir pro Heroku*
