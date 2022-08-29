@@ -1,5 +1,5 @@
 import {
-    MigrationInterface, 
+    MigrationInterface,
     QueryRunner,
     Table
 } from 'typeorm';
@@ -7,39 +7,25 @@ import {
 export class CreateUserTable1660177257111 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'user',
+            name: 'account',
             columns: [
+                { name: 'uid', type: 'string', isPrimary: true, isNullable: false },
+                { name: 'username', type: 'varchar', length: '50', isNullable: false },
+                { name: 'name', type: 'varchar', length: '100', isNullable: false },
+                { name: 'email', type: 'varchar', length: '100', isNullable: false },
+                { name: 'password', type: 'varchar', length: '100', isNullable: false },
+            ],
+            uniques: [
                 {
-                    name: 'id',
-                    type: 'int',
-                    isPrimary: true,
-                    isGenerated: true,
-                    isNullable: false
+                    columnNames: ['username', 'email'],
+                    name: 'un_account',
                 },
-                {
-                    name: 'name',
-                    type: 'varchar',
-                    length: '100',
-                    isNullable: false
-                },
-                {
-                    name: 'email',
-                    type: 'varchar',
-                    length: '100',
-                    isNullable: false
-                },
-                {
-                    name: 'password',
-                    type: 'varchar',
-                    length: '100',
-                    isNullable: false
-                }
             ]
         }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('user', true, true, true);    
+        await queryRunner.dropTable('account', true, true, true);
     }
 
 }

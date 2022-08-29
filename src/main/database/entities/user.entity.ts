@@ -5,11 +5,15 @@ import {
     Column
 } from 'typeorm';
 import bcrypt from 'bcrypt';
+import { randomUUID } from 'crypto';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
     @PrimaryColumn()
-    id?: number;
+    uid: string;
+
+    @Column()
+    username: string;
 
     @Column()
     name: string;
@@ -20,9 +24,11 @@ export class UserEntity extends BaseEntity {
     @Column()
     password: string;
 
-    constructor(name: string, email: string, password: string) {
-        super();        
-        
+    constructor(username: string, name: string, email: string, password: string) {
+        super();
+
+        this.uid = randomUUID();
+        this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
