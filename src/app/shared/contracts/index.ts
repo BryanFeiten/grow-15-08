@@ -4,3 +4,4 @@ export * from './helpers/http.response';
 
 //presentation
 export * from './presentation/controller';
+export * from './presentation/validator';
