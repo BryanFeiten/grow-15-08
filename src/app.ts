@@ -1,9 +1,12 @@
 import express from 'express';
 import cors from 'cors';
-import UserRouter from './routers/user';
-import AuthRouter from './routers/auth';
-import DocsRouter from './routers/docs';
-import Postgres from './database/connections/Postgres';
+import Postgres from './main/database/connections/Postgres';
+import {
+    UserRouter,
+    AuthRouter,
+    DocsRouter,
+    SubjectRoute
+} from './main/routers';
 
 export default class Application {
     private readonly app: express.Application;
@@ -23,7 +26,9 @@ export default class Application {
     }
 
     start(port: number) {
-        this.app.listen(port);
+        this.app.listen(port, () => {
+            console.log(`API running on port: ${port}`);
+        });
     }
 
     config() {
@@ -33,12 +38,13 @@ export default class Application {
     }
 
     routers() {
+        this.app.use(new SubjectRoute().init());
         this.app.use(new UserRouter().init());
         this.app.use(new AuthRouter().init());
         this.app.use(new DocsRouter().init());
     }
 
     async database() {
-        await Postgres.getInstance();        
+        await Postgres.getInstance();
     }
 }

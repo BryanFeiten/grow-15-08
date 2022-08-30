@@ -18,10 +18,17 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jest": "^28.1.8",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^18.6.3",
+    "@types/supertest": "^2.0.12",
     "@types/swagger-ui-express": "^4.1.3",
     "@types/typescript": "^2.0.0",
+    "cross-env": "^7.0.3",
+    "jest": "^28.1.3",
+    "sqlite": "^4.1.2",
+    "supertest": "^6.2.4",
+    "ts-jest": "^28.0.8",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.4"
   },
@@ -31,6 +38,13 @@
     "start": "node ./dist/server",
     "doc": "node ./swagger",
     "migration:run": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js migration:run",
-    "migration:revert": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js migration:revert"
+    "migration:revert": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js migration:revert",
+    "migration:test": "cross-env NODE_ENV=test && yarn migration:run",
+    "test:setup": "rimraf ./db-test.sql && yarn migration:test",
+    "test": "cross-env NODE_ENV=test && yarn test:setup && jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "cross-env NODE_ENV=test && yarn test:setup && jest --passWithNoTests --runInBand --detectOpenHandles",
+    "test:coverage": "test --coverage",
+    "test:unit": "tests --watchAll -c ./jest-unit.config.ts",
+    "test:integration": "tests --watchAll -c ./jest-integration.config.ts"
   }
 }
