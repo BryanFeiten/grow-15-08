@@ -1,4 +1,4 @@
-import { CustomError } from "./custom.error";
+import { CustomError } from ".";
 
 export class DomainError extends CustomError {
   constructor(component: string, message: string) {
